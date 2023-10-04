@@ -1,20 +1,20 @@
 export const FriendList = props => {
-  const listItem = props.friends.map(item => (
-    <li class="friend-item">
-      <span
-        class="friend-status"
-        style={{
-          background: item.isOnline === true ? 'green' : 'red',
-        }}
-      ></span>
-      <img class="friend-avatar" src={item.avatar} alt={item.name} width="48" />
-      <p class="friend-name">{item.name}</p>
-    </li>
-  ));
-
   return (
     <div class="friend-container">
-      <ul class="friend-list">{listItem}</ul>
+      <ul class="friend-list">
+        {props.friends.map(({ id, isOnline, avatar, name }) => (
+          <li class="friend-item" key={id}>
+            <span
+              class="friend-status"
+              style={{
+                background: isOnline === true ? 'green' : 'red',
+              }}
+            ></span>
+            <img class="friend-avatar" src={avatar} alt={name} width="48" />
+            <p class="friend-name">{name}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
